@@ -39,7 +39,7 @@ for node in "${NODES_ARRAY[@]}"; do
       _OUTPUT=`remote_exec ${NODE_NAME} "bash ~/start_service.sh local 2>&1"`
       _STAT="$?"
     else
-      _OUTPUT=`remote_exec ${NODE_NAME} "bash ~/start_service.sh 2>&1"`
+      _OUTPUT=`remote_exec ${NODE_NAME} "bash ~/start_service.sh start --consul 2>&1"`
       _STAT="$?"
     fi
 
