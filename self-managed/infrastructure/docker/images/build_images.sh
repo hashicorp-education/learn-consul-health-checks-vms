@@ -171,7 +171,7 @@ LS_TAG="-t ${DOCKER_REPOSITORY}/${IMAGE_NAME}:${DOCKER_REPOSITORY}"
 ## Build Docker image
 DOCKER_BUILDKIT=1 docker build \
   --build-arg BASE_IMAGE="${DOCKER_REPOSITORY}/${DOCKER_BASE_CONSUL}:latest" \
-  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1
+  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1 &
 
 if [ $? != 0 ]; then
   ts_log "\033[1m\033[31m[ERROR]\033[0m - Failed build for ${DOCKER_REPOSITORY}/${IMAGE_NAME}...exiting."
@@ -199,7 +199,7 @@ DOCKER_BUILDKIT=1 docker build \
   --build-arg APP2_VERSION="${HC_API_PRODUCT_VERSION}" \
   --build-arg APP3_VERSION="${HC_API_PAYMENTS_VERSION}" \
   --build-arg BASE_IMAGE="${DOCKER_REPOSITORY}/${DOCKER_BASE_CONSUL}:latest" \
-  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1
+  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1 &
 
 if [ $? != 0 ]; then
   ts_log "\033[1m\033[31m[ERROR]\033[0m - Failed build for ${DOCKER_REPOSITORY}/${IMAGE_NAME}...exiting."
@@ -225,7 +225,7 @@ LS_TAG="-t ${DOCKER_REPOSITORY}/${IMAGE_NAME}:${DOCKER_REPOSITORY}"
 DOCKER_BUILDKIT=1 docker build \
   --build-arg APP_VERSION="" \
   --build-arg BASE_IMAGE="${DOCKER_REPOSITORY}/${DOCKER_BASE_CONSUL}:latest" \
-  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1
+  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1 &
 
 if [ $? != 0 ]; then
   ts_log "\033[1m\033[31m[ERROR]\033[0m - Failed build for ${DOCKER_REPOSITORY}/${IMAGE_NAME}...exiting."
@@ -251,7 +251,7 @@ LS_TAG="-t ${DOCKER_REPOSITORY}/${IMAGE_NAME}:${DOCKER_REPOSITORY}"
 DOCKER_BUILDKIT=1 docker build \
   --build-arg APP_VERSION="" \
   --build-arg BASE_IMAGE="${DOCKER_REPOSITORY}/${DOCKER_BASE_CONSUL}:latest" \
-  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1
+  -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1 &
 
 if [ $? != 0 ]; then
   ts_log "\033[1m\033[31m[ERROR]\033[0m - Failed build for ${DOCKER_REPOSITORY}/${IMAGE_NAME}...exiting."
@@ -259,6 +259,8 @@ if [ $? != 0 ]; then
 fi
 
 popd > /dev/null 2>&1
+
+wait
 
 # +---------------------+ #
 # | LIST CREATED IMAGES | #
