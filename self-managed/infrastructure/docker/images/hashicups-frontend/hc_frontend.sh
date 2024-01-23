@@ -46,6 +46,9 @@ find /app/.next \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 se
 echo "Stop pre-existing instances."
 
 killall node >> ${LOGFILE} 2>&1 &
+
+sleep 1
+
 ## -----------------------------------------------------------------------------
 
 
@@ -116,12 +119,18 @@ echo "Start service instance."
 cd /app || exit
 
 if [ "${SERVICE_MESH}" == true ]; then
+    
     echo "Starting HashiCups Frontend on local interface."
     /app/node_modules/.bin/next start --hostname "127.0.0.1" >> ${LOGFILE} 2>&1 &
+
 else
+    
     echo "Starting HashiCups Frontend."
     /app/node_modules/.bin/next start >> ${LOGFILE} 2>&1 &
+
 fi
+
+cd ~ || exit
 
 ## -----------------------------------------------------------------------------
 
