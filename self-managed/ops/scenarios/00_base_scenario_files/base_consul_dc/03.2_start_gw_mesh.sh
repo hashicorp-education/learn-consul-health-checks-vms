@@ -55,7 +55,7 @@ client_addr = "127.0.0.1"
 bind_addr   = "{{ GetInterfaceIP \"eth0\" }}"
 
 # Join other Consul agents
-retry_join = [ "${CONSUL_RETRY_JOIN}" ]
+retry_join = [ "${CONSUL_RETRY_JOIN}", "consul.service.${CONSUL_DATACENTER}.${CONSUL_DOMAIN}" ]
 
 # DNS recursors
 recursors = ["1.1.1.1"]
