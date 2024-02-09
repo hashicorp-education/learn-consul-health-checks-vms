@@ -1,4 +1,4 @@
-# Manage permissions with access control lists (ACLs)
+# Monitor your application health with distributed checks
 
 This repository contains companion code for the following tutorial:
 
